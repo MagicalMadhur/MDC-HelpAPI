@@ -1,0 +1,35 @@
+CREATE PROCEDURE FetchData
+AS
+select *from dbo.HELP where flag=1
+
+
+CREATE PROCEDURE FetchDataByID @id int
+AS
+select *from dbo.HELP where flag=1 AND id=@id
+
+CREATE PROCEDURE InsertData @PageID int,@ProjectID int,@HelpTitle varchar(255),@HelpBody varchar(255),@flag int
+AS
+INSERT INTO dbo.HELP VALUES(
+             @PageID,
+             @ProjectID,
+             @HelpTitle,
+             @HelpBody,
+             @flag
+            )
+            
+
+CREATE PROCEDURE UpdateData @PageID int,@ProjectID int,@HelpTitle varchar(255),@HelpBody varchar(255),@ID int
+AS
+UPDATE dbo.HELP SET
+            [PageID] = @PageID,
+            [ProjectID] =@ProjectID,
+            [HelpTitle] =@HelpTitle,
+            [HelpBody] = @HelpBody
+            where id=@ID
+      
+      
+CREATE PROCEDURE DeleteData @ID int
+AS
+UPDATE [dbo].[HELP]
+            SET Flag = 0
+            where id=@ID
